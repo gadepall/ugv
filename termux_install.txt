@@ -86,7 +86,7 @@ sudo raspi-config
 ------------------ESP32 on rpi--------------------------------------------------------------------------
 
 #On your rpi
-pip3 install platformio
+sudo pip3 install platformio
 mkdir -p ~/hi/.pio/build/esp32doit-devkit-v1/
 cd hi
 wget https://raw.githubusercontent.com/gadepall/termux/main/pio/Projects/hi/platformio.ini
