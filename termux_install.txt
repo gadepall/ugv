@@ -1,0 +1,103 @@
+#------------------Install Termux----------------------------
+
+#Attach a keyboard to your mobile 
+
+#Install fdroid apk from
+https://www.f-droid.org/
+
+#Open fdroid on your mobile and install termux from it
+
+#Give termux access to your  user directory in android
+termux-setup-storage
+
+#Upgrade packages
+apt update && apt upgrade
+apt install build-essential
+
+#Mandatory packages
+apt install git silversearcher-ag wget openssh subversion imagemagick proot nano python  bsdtar mutt nmap
+#------------------End Install Termux----------------------------
+
+#------------------ Installing ubuntu on termux----------------------------
+apt update
+apt install proot-distro
+#Install ubuntu
+proot-distro install ubuntu
+proot-distro login ubuntu
+apt update && apt upgrade
+apt install apt-utils build-essential
+apt install git  wget  subversion imagemagick  nano  
+#------------------End Installing ubuntu on termux----------------------------
+
+#------------------ Installing python3 on termuxubuntu----------------------------
+apt install python3-pip python3-numpy python3-scipy python3-matplotlib python3-mpmath python3-sympy python3-cvxopt
+
+#------------------ End installing python3 on termuxubuntu----------------------------
+
+
+#------------------ Installing jupyterlab on termuxubuntu----------------------------
+pip install jupyterlab 
+jupyterlab --allow-root
+#open the server link in the browser to see the jupyter-lab UI
+#------------------ End installing jupyterlab on termuxubuntu----------------------------
+
+
+#ESP32----------------------------------------------------------
+#Install platformio (use pip3 instead of pip for ubuntu) on termux
+pip3 install platformio
+
+#Download sample directory for esp32 and arduino
+pio lib --global install "stempedia/DabbleESP32"
+svn co https://github.com/gadepall/termux/trunk/pio/Projects
+
+
+#Install xtensa and espressif32
+cd Projects/hi
+pio run
+
+#This will also build firmware.bin in 
+.pio/build/esp32doit-devkit-v1/firmware.bin 
+
+
+#On your rpi
+pip3 install platformio
+mkdir -p ~/hi/.pio/build/esp32doit-devkit-v1/
+cd hi
+wget https://raw.githubusercontent.com/gadepall/termux/main/pio/Projects/hi/platformio.ini
+nano platformio.ini
+#comment the following line like this
+;platform_packages = toolchain-xtensa32@https://github.com/esphome/esphome-docker-base/releases/download/v1.4.0/toolchain-xtensa32.tar.gz
+
+#From your phone
+scp .pio/build/esp32doit-devkit-v1/firmware.bin pi@192.168.50.252:./hi/.pio/build/esp32doit-devkit-v1/
+
+#On your rpi
+cd ~/hi
+pio run -t nobuild -t upload
+-------------------------------End ESP32 installation --------------------
+
+#Arduino
+cd Projects/hello
+pio run
+#  All other commands same as for esp32
+
+-------------------------------End Arduino installation ------------------
+
+
+
+
+#------------------Additional tabs on termux (Only for those who know what they are doing) ---------------------------------------------
+
+#By default, termux allows you to open only 8 tabs.  To increase this, do the follwoing
+#Download the folowing 
+wget https://raw.githubusercontent.com/gadepall/termux/main/installation/tab
+wget https://raw.githubusercontent.com/gadepall/termux/main/installation/termux-url-opener
+mkdir -p $HOME/bin
+cp termux-url-opener $HOME/bin/
+cp tab $PREFIX/bin/tab
+chmod +x $PREFIX/bin/tab
+#Now on any terminal type 
+tab
+#and press enter.  This will launch a new terminal.  
+#After that you can just type tab and press enter to open new tabs beyond the limit
+
