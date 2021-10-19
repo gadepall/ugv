@@ -1,3 +1,5 @@
+\let\negmedspace\undefined
+\let\negthickspace\undefined
 \documentclass[journal,12pt,twocolumn]{IEEEtran}
 %
 \usepackage{setspace}
@@ -187,7 +189,7 @@ literate = {-}{-}1
 
 \title{
 %	\logo{
-Display control through C 
+Display control through ESP32 using Arduino Framework
 %वामन द्वारा सप्तांश प्रदर्शी का नियंत्रण
 %वामन द्वारा सप्तांश प्रदर्शी का नियंत्रण
 %	}
@@ -312,7 +314,7 @@ G V V Sharma$^{*}$% <-this % stops a space
 %\IEEEpeerreviewmaketitle
 
 \begin{abstract}
-This document shows how to implement a decade counter using arm-gcc on pygmy.
+This document shows how to implement a decade counter using the Arduino framework  on ESP32.
 %इस आलेख में वामन को  दशक गणित्र के रूप में उपयोग करने का विधान प्रस्तुत है.
 
 
@@ -328,7 +330,7 @@ This document shows how to implement a decade counter using arm-gcc on pygmy.
 \section{Software}
 All codes used in this document are available at the following link
 \begin{lstlisting}
-https://github.com/gadepall/vaman/tree/master/arm/codes/sevenseg/
+  https://github.com/gadepall/ugv/tree/main/codes/sevenseg
 \end{lstlisting}
 %
 \section{Setup}
@@ -339,15 +341,15 @@ https://github.com/gadepall/vaman/tree/master/arm/codes/sevenseg/
 \numberwithin{figure}{enumi}
 \numberwithin{table}{enumi}
 
-\item Fig.\ref{fig:pin_sheet} shows all the pin banks of the pygmy. Connect the pins of the
-display in Fig.  \ref{fig:sevenseg} to bank J5 of the pygmy using Table \ref{table:sevenseg}.
+\item Fig.\ref{fig:pin_sheet} shows all the pins of the ESP32. Connect the pins of the
+display in Fig.  \ref{fig:sevenseg} to the ESP32 using Table \ref{table:sevenseg}.
 The COM pin should be connected to 3.3V through a resistor.
 \begin{table}[!ht]
 \centering
 \resizebox{\columnwidth}{!}{
-\input{tables/pygmy_sevenseg.tex}
+\input{tables/esp_sevenseg.tex}
 }
-\caption{Display-Pygmy connection.}
+\caption{Display-ESP32 connection.}
 \label{table:sevenseg}
 \end{table}
 
@@ -371,32 +373,30 @@ The COM pin should be connected to 3.3V through a resistor.
 
 \begin{figure*}[!ht]
 \centering
-\includegraphics[width = \textwidth]{figs/pin_sheet.png}
-\caption{Pin Diagram}
+\includegraphics[width = \textwidth]{figs/esp-devkit.jpg}
+\caption{Pin Diagram.  Note that the pin diagram may vary depending upon the ESP32 variant.}
 \label{fig:pin_sheet}
 \end{figure*}
 
 
 
-\item Now execute the following code
+\item Now execute the following code using platformio
 \label{code:sevenseg}
 \begin{lstlisting}
-codes/sevenseg/static/src/main.c
+  codes/sevenseg/src/main.cpp
 \end{lstlisting}
-Flash static.bin obtained upon execution of the above code to the pygmy.  You should see the number 7 on the display.  The following function generates this number.
+Flash firmware.bin obtained upon execution of the above code to the ESP32.  You should see the number 9 on the display.  The following function generates this number.
 \begin{lstlisting}
-sevenseg(0,0,0,1,1,1,1);
-void sevenseg(int a, int b, int c, int d, int e, int f, int g)                                     
+sevenseg(0,0,0,0,1,0,0);
+void sevenseg(int a,int b,int c,int d,int e,int f,int g)
 {
-    //Seven Segment GPIO
-    PyHal_GPIO_Set(4,a);//a
-    PyHal_GPIO_Set(5,b);//b
-    PyHal_GPIO_Set(6,c);//c
-    PyHal_GPIO_Set(7,d);//d
-    PyHal_GPIO_Set(8,e);//e
-    PyHal_GPIO_Set(10,f);//f
-    PyHal_GPIO_Set(11,g);//g
-}
+  digitalWrite(32, a); 
+  digitalWrite(33, b); 
+  digitalWrite(25, c); 
+  digitalWrite(26, d); 
+  digitalWrite(27, e); 
+  digitalWrite(14, f);     
+  digitalWrite(12, g); 
 }
 \end{lstlisting}
 \item Modify the above program using Table \ref{table:arduinoport} and Fig. \ref{fig:sevenseg12} 
@@ -421,28 +421,28 @@ to display 0-9.
 
 
 
-\item   Table \ref{table:sevenseg} and PU 64 Table in 
-Fig.  \ref{fig:pins}  show how to use the pins of the pygmy to drive the seven segment display.
-%इसमें संशोधन कर वामन के कुशों के अनेक संचय के लिए क्रमादेश \ref{code:sevenseg} का चालयन करें.
-\begin{figure*}[!ht]
-\centering
-\includegraphics[width = \textwidth]{figs/pins.jpg}
-\caption{Pin map.}
-\label{fig:pins}
-\end{figure*}
-\item Use a function taking decimal input in the code in  \ref{code:sevenseg} to generate 
+% \item   Table \ref{table:sevenseg} and 
+% Fig.  \ref{fig:pins}  show how to use the pins of the ESP32 to drive the seven segment display.
+% %इसमें संशोधन कर वामन के कुशों के अनेक संचय के लिए क्रमादेश \ref{code:sevenseg} का चालयन करें.
+% \begin{figure*}[!ht]
+% \centering
+% \includegraphics[width = \textwidth]{figs/pins.jpg}
+% \caption{Pin map.}
+% \label{fig:pins}
+% \end{figure*}
+\item Use a function taking binary input in the code in  \ref{code:sevenseg} to generate 
 numbers on the display.
 \\
 \solution  Execute the following file.
 \begin{lstlisting}
-codes/sevenseg/decimal/main.c
+  codes/input/src/main.cpp
 \end{lstlisting}
-\item Program the pygmy to function as a decade counter.
-\\
-\solution Execute the following code.
-\begin{lstlisting}
-codes/sevenseg/loop/main.c
-\end{lstlisting}
+\item Program the ESP32 to function as a decade counter.
+% \\
+% \solution Execute the following code.
+% \begin{lstlisting}
+% codes/sevenseg/loop/main.c
+% \end{lstlisting}
 \end{enumerate}
 %
 
