@@ -189,7 +189,7 @@ literate = {-}{-}1
 
 \title{
 %	\logo{
-Display control over Bluetooth using  ESP32
+  Display control through ESP32 using Arduino Framework
 %वामन द्वारा सप्तांश प्रदर्शी का नियंत्रण
 %वामन द्वारा सप्तांश प्रदर्शी का नियंत्रण
 %	}
@@ -314,7 +314,7 @@ G V V Sharma$^{*}$% <-this % stops a space
 %\IEEEpeerreviewmaketitle
 
 \begin{abstract}
-This document shows how to drive a seven segment display over bluetooth using the  ESP32 and the Dabble app.
+This document shows how to implement a decade counter using the Arduino framework  on ESP32.
 %इस आलेख में वामन को  दशक गणित्र के रूप में उपयोग करने का विधान प्रस्तुत है.
 
 
@@ -330,13 +330,13 @@ This document shows how to drive a seven segment display over bluetooth using th
 \section{Software}
 All codes used in this document are available at the following link.
 \begin{lstlisting}
-  https://github.com/gadepall/ugv/tree/main/codes/ble-dabble
+  https://github.com/gadepall/ugv/tree/main/codes/sevenseg
 \end{lstlisting}
 %
-Install ``Arduino \& ESP32 Bluetooth Controller App - Dabble" from 
-\begin{lstlisting}
-  https://play.google.com/store/apps/details?id=io.dabbleapp
-\end{lstlisting}
+% Install ``Arduino \& ESP32 Bluetooth Controller App - Dabble" from 
+% \begin{lstlisting}
+%   https://play.google.com/store/apps/details?id=io.dabbleapp
+% \end{lstlisting}
 
 \section{Setup}
 \renewcommand{\theequation}{\theenumi}
@@ -366,14 +366,14 @@ The COM pin should be connected to 3.3V through a resistor.
 \caption{Seven Segment Display}
 \label{fig:sevenseg}
 \end{figure}
-% \begin{figure}[!ht]
-% \centering
-% \resizebox{\columnwidth}{!}{
-% \input{figs/sevenseg12.tex}
-% }
-% \caption{Pictorial representation of Table \ref{table:arduinoport}.}
-% \label{fig:sevenseg12}
-% \end{figure}
+\begin{figure}[!ht]
+\centering
+\resizebox{\columnwidth}{!}{
+\input{figs/sevenseg12.tex}
+}
+\caption{Pictorial representation of Table \ref{table:arduinoport}.}
+\label{fig:sevenseg12}
+\end{figure}
 
 
 \begin{figure*}[!ht]
@@ -388,41 +388,41 @@ The COM pin should be connected to 3.3V through a resistor.
 \item Now execute the following code using platformio
 \label{code:sevenseg}
 \begin{lstlisting}
-  codes/ble-dabble/src/main.cpp
+  codes/sevenseg/src/main.cpp
 \end{lstlisting}
 Flash firmware.bin obtained upon execution of the above code to the ESP32.  
-%\item 
-% You should see the number 9 on the display.  The following function generates this number.
-% \begin{lstlisting}
-% sevenseg(0,0,0,0,1,0,0);
-% void sevenseg(int a,int b,int c,int d,int e,int f,int g)
-% {
-%   digitalWrite(32, a); 
-%   digitalWrite(33, b); 
-%   digitalWrite(25, c); 
-%   digitalWrite(26, d); 
-%   digitalWrite(27, e); 
-%   digitalWrite(14, f);     
-%   digitalWrite(12, g); 
-% }
-% \end{lstlisting}
-% \item Modify the above program using Table \ref{table:arduinoport} and Fig. \ref{fig:sevenseg12} 
-% to display 0-9.
-% \begin{table}[!ht]
-% \centering
-% \resizebox{\columnwidth}{!}{
-% \input{tables/arduinoport.tex}
-% }
-% \caption{Decimal number generation on the display. }
-% \label{table:arduinoport}
-% \end{table}
-\item Now display the numbers 0-4 on the seven segment display using the dabble app as shown in Fig. \ref{fig:dabble}
-\begin{figure*}[!ht]
-  \centering
-  \includegraphics[width = \textwidth]{figs/dabble.jpg}
-  \caption{Dabble app to control the display over bluetooth}
-  \label{fig:dabble}
-  \end{figure*}
+\item 
+You should see the number 9 on the display.  The following function generates this number.
+\begin{lstlisting}
+sevenseg(0,0,0,0,1,0,0);
+void sevenseg(int a,int b,int c,int d,int e,int f,int g)
+{
+  digitalWrite(32, a); 
+  digitalWrite(33, b); 
+  digitalWrite(25, c); 
+  digitalWrite(26, d); 
+  digitalWrite(27, e); 
+  digitalWrite(14, f);     
+  digitalWrite(12, g); 
+}
+\end{lstlisting}
+\item Modify the above program using Table \ref{table:arduinoport} and Fig. \ref{fig:sevenseg12} 
+to display 0-9.
+\begin{table}[!ht]
+\centering
+\resizebox{\columnwidth}{!}{
+\input{tables/arduinoport.tex}
+}
+\caption{Decimal number generation on the display. }
+\label{table:arduinoport}
+\end{table}
+% \item Now display the numbers 0-4 on the seven segment display using the dabble app as shown in Fig. \ref{fig:dabble}
+% \begin{figure*}[!ht]
+%   \centering
+%   \includegraphics[width = \textwidth]{figs/dabble.jpg}
+%   \caption{Dabble app to control the display over bluetooth}
+%   \label{fig:dabble}
+%   \end{figure*}
   
 \end{enumerate}
 %

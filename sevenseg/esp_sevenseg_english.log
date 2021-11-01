@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/Arch Linux) (preloaded format=xelatex 2021.8.1)  17 OCT 2021 11:34
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/Arch Linux) (preloaded format=xelatex 2021.8.26)  1 NOV 2021 18:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -446,7 +446,7 @@ Package: cite 2015/02/27  v 5.5
 Package: cases 2020/03/29 ver 3.2
 \numc@numwid=\dimen261
 )
-(/home/user/texmf/tex/latex/tfslatex/subfig.sty
+(/usr/share/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
 
 (/usr/share/texmf-dist/tex/latex/caption/caption.sty
@@ -1950,18 +1950,20 @@ File: figs/esp-devkit.jpg Graphic file (type bmp)
 \gnumericColF=\skip102
 \gnumericColG=\skip103
 \gnumericColH=\skip104
-) [2] [3]
+) [2
+
+] [3]
 (./esp_sevenseg_english.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `esp_sevenseg_english.out' has not changed.
-(rerunfilecheck)             Checksum: DFFD4CC395AAB0891E5C28AB56462C9A;234.
+(rerunfilecheck)             Checksum: 576B8C8CC2DDBFDE7650148083E49C18;151.
  ) 
 Here is how much of TeX's memory you used:
  50986 strings out of 476919
- 1189548 string characters out of 5827675
- 1869081 words of memory out of 5000000
+ 1189557 string characters out of 5827674
+ 1860878 words of memory out of 5000000
  70035 multiletter control sequences out of 15000+600000
  430540 words of font info for 128 fonts, out of 8000000 for 9000
  1351 hyphenation exceptions out of 8191

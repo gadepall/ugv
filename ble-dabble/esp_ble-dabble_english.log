@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/Arch Linux) (preloaded format=xelatex 2021.8.26)  24 OCT 2021 16:07
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/Arch Linux) (preloaded format=xelatex 2021.8.26)  1 NOV 2021 18:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1940,13 +1940,12 @@ LaTeX Font Warning: Font shape `TU/Sanskrit_2003.ttf(0)/m/sc' undefined
 ) (./figs/sevenseg.tex)
 File: figs/esp-devkit.jpg Graphic file (type bmp)
 <figs/esp-devkit.jpg>
+File: figs/dabble.jpg Graphic file (type bmp)
+<figs/dabble.jpg>
  [1
 
 
-]
-File: figs/dabble.jpg Graphic file (type bmp)
-<figs/dabble.jpg>
- [2
+] [2
 
 ] [3] (./esp_ble-dabble_english.aux)
 
@@ -1959,7 +1958,7 @@ Package rerunfilecheck Info: File `esp_ble-dabble_english.out' has not changed.
 Here is how much of TeX's memory you used:
  50977 strings out of 476919
  1189442 string characters out of 5827674
- 1847331 words of memory out of 5000000
+ 1846331 words of memory out of 5000000
  70031 multiletter control sequences out of 15000+600000
  430540 words of font info for 128 fonts, out of 8000000 for 9000
  1351 hyphenation exceptions out of 8191
